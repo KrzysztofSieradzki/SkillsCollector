@@ -1,5 +1,8 @@
 package listeners;
 
+import model.Skill;
+import model.Source;
+import model.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -24,7 +27,7 @@ public class HibernateInitializer implements ServletContextListener {
             Configuration configuration = new Configuration();
             Properties hbnProperties = new Properties();
             hbnProperties.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-            hbnProperties.put(Environment.URL, "jdbc:mysql://localhost:8080/skills_collector?useSSL=false&serverTimezone=UTC");
+            hbnProperties.put(Environment.URL, "jdbc:mysql://localhost:3306/skills_collector?useSSL=false&serverTimezone=UTC");
             // Nazwę użytkownika dostosuj do swojej instalacji MySQL
             hbnProperties.put(Environment.USER, "root");
             // Hasło użytkownika dostosuj do swojej instalacji MySQL
@@ -40,9 +43,9 @@ public class HibernateInitializer implements ServletContextListener {
 
             // Odkomentuj poniższe instrukcje po utworzeniu klas encji (kolejne zadania)
 
-            //configuration.addAnnotatedClass(User.class);
-            //configuration.addAnnotatedClass(Source.class);
-            //configuration.addAnnotatedClass(Skill.class);
+            configuration.addAnnotatedClass(User.class);
+            configuration.addAnnotatedClass(Source.class);
+            configuration.addAnnotatedClass(Skill.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties()).build();

@@ -1,6 +1,8 @@
 package model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +13,9 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToMany(mappedBy = "skills")
+    private List<Source> sources =new ArrayList<>();
+
     @Column(unique = true, nullable = false)
     private String name;
 
@@ -18,14 +23,13 @@ public class Skill {
         return id;
     }
 
+    public List<Source> getSources() { return sources; }
 
-    public String getName() {
-        return name;
-    }
+    public void setSources(List<Source> sources) { this.sources = sources; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     @Override
     public boolean equals(Object o) {
