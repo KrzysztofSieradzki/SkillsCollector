@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
@@ -24,15 +25,15 @@ public class User {
     private String username;
 
     @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="sources_id",
+    @JoinTable(name="users_known_sources",
     joinColumns = {@JoinColumn(name="user_id")},
     inverseJoinColumns = {@JoinColumn(name="source_id")}
     )
-    private List<Source> sources = new ArrayList<>();
+    private Set<Source> sources;
 
-    public List<Source> getSources() { return sources; }
+    public Set<Source> getSources() { return sources; }
 
-    public void setSources(List<Source> sources) { this.sources = sources; }
+    public void setSources(Set<Source> sources) { this.sources = sources; }
 
     public Long getId() { return id; }
 

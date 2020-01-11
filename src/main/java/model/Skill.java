@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="skills")
@@ -14,7 +15,7 @@ public class Skill {
     private Long id;
 
     @ManyToMany(mappedBy = "skills")
-    private List<Source> sources =new ArrayList<>();
+    private Set<Source> sources;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -23,9 +24,9 @@ public class Skill {
         return id;
     }
 
-    public List<Source> getSources() { return sources; }
+    public Set<Source> getSources() { return sources; }
 
-    public void setSources(List<Source> sources) { this.sources = sources; }
+    public void setSources(Set<Source> sources) { this.sources = sources; }
 
     public String getName() { return name; }
 

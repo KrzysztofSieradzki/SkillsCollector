@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name="sources")
@@ -18,18 +19,18 @@ public class Source {
     private String name;
 
     @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name="skills_id",
+    @JoinTable(name="sources_attached_skills",
             joinColumns = {@JoinColumn(name = "source_id")},
             inverseJoinColumns = {@JoinColumn(name="skill_id")}
     )
-    private List<Skill> skills = new ArrayList<>();
+    private Set<Skill> skills;
 
     @ManyToMany(mappedBy = "sources")
-    private List<User> users = new ArrayList<>();
+    private Set<User> users;
 
-    public List<Skill> getSkills() { return skills; }
+    public Set<Skill> getSkills() { return skills; }
 
-    public void setSkills(List<Skill> skills) { this.skills = skills; }
+    public void setSkills(Set<Skill> skills) { this.skills = skills; }
 
     public Long getId() { return id; }
 
@@ -42,9 +43,9 @@ public class Source {
 
     public void setName(String name) { this.name = name; }
 
-    public List<User> getUsers() { return users; }
+    public Set<User> getUsers() { return users; }
 
-    public void setUsers(List<User> users) { this.users = users; }
+    public void setUsers(Set<User> users) { this.users = users; }
 
     @Override
     public boolean equals(Object o) {
