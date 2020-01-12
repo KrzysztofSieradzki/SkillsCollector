@@ -28,7 +28,11 @@ public class RegistrationServlet extends HttpServlet {
         String password = req.getParameter("password");
         String firstname = req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
-        User user = new User(firstname,lastname,password,userName);
+        User user = new User();
+        user.setFirst_name(firstname);
+        user.setLast_name(lastname);
+        user.setPassword(password);
+        user.setUsername(userName);
         if(!userDao.isUsernameAvailable(userName)){
             String errorMsg= "Username not available";
             req.setAttribute("error",errorMsg);

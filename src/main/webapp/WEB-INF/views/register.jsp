@@ -40,8 +40,8 @@
     </form>
 </div>
 
- <c:if test="${errorMsg!=null}">
-     <p style="color: red">Username not available</p>
+ <c:if test="${error!=null}">
+     <p style="color: red">${error}</p>
  </c:if>
 
 <jsp:include page="fragments/footer.jsp"/>
