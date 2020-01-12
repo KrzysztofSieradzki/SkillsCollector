@@ -3,6 +3,7 @@ package dao;
 import model.Skill;
 import model.Source;
 import model.User;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 
 import java.util.Arrays;
@@ -60,5 +61,13 @@ public class UserDao extends BaseDao {
                 "join u.sources sr JOIN sr.skills so WHERE u.username = :username",Skill.class)
                 .setParameter("username", username)
                 .getResultList());
+    }
+
+    public User getWithSources(Long id){
+        return super.produceInTransaction(session -> {
+            User user = session.get(User.class,id);
+            Hibernate.initialize(user.getSources());
+            return user;
+        });
     }
 }
