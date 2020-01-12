@@ -1,8 +1,11 @@
 package dao;
 
+import model.Skill;
+import model.Source;
 import model.User;
 import org.hibernate.SessionFactory;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class UserDao extends BaseDao {
@@ -51,5 +54,9 @@ public class UserDao extends BaseDao {
                         .setParameter("username", username)
                         .setParameter("password", password)
                         .getResultList());
+    }
+    public List<Skill> getAllSkills(User user){
+        return super.produceInTransaction(session -> session.createQuery("select so from User u " +
+                "join u.sources sr JOIN sr.skills so",Skill.class).getResultList());
     }
 }

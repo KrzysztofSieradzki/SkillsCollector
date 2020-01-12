@@ -18,7 +18,7 @@ public class AuthorizationFilter extends HttpFilter {
 
     @Override
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
-        List<String> unprotectedPaths = Arrays.asList("/login","/register","/logout");
+        List<String> unprotectedPaths = Arrays.asList("/login","/register","/logout","/index.jsp");
         List<String> protectedPaths = Arrays.asList("/user/skills","/user/sources","/user/unknown-sources");
         String path= req.getServletPath();
         System.out.println("Sciezka: "+ path);
