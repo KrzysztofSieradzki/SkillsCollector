@@ -23,11 +23,17 @@ public class UserSkillsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
-        List<Skill> skills= userDao.getAllSkills(user);
+        List<Skill> skills= userDao.getAllSkills(user.getUsername());
         Map<Skill,Integer> mapOfSkills = new HashMap<>();
 
         for(Skill s : skills){
-            mapOfSkills.put(s,1);
+            if (!mapOfSkills.containsKey(s)) {
+                mapOfSkills.put(s, 1);
+            }
+            else {
+                Integer counter = mapOfSkills.get(s);
+                mapOfSkills.put(s, counter + 1);
+            }
         }
         req.setAttribute("skills",mapOfSkills);
         req.getRequestDispatcher("/WEB-INF/views/user-skills.jsp").forward(req,resp);
