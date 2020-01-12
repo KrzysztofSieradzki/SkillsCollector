@@ -6,7 +6,7 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 
 public class UserDao extends BaseDao {
-    protected UserDao(SessionFactory sessionFactory) {
+    public UserDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 

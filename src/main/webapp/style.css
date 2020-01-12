@@ -1,0 +1,12 @@
+.menuOption{
+    padding: 5px;
+    align-content: center;
+    border-left: solid;
+    background-color: darkblue;
+    color: white;
+
+}
+a:link{
+    color: white;
+    text-decoration: none;
+}

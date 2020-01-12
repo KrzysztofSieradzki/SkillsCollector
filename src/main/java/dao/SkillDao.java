@@ -5,7 +5,7 @@ import model.Source;
 import org.hibernate.SessionFactory;
 
 public class SkillDao extends BaseDao {
-    protected SkillDao(SessionFactory sessionFactory) {
+    public SkillDao(SessionFactory sessionFactory) {
         super(sessionFactory);
     }
 

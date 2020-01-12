@@ -8,6 +8,7 @@ import java.util.Set;
 @Table(name="users")
 public class User {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,6 +22,13 @@ public class User {
     private String password;
     @Column(nullable = false, unique = true)
     private String username;
+
+    public User(String first_name, String last_name, String password, String username) {
+        this.first_name = first_name;
+        this.last_name =last_name;
+        this.password =password;
+        this.username = username;
+    }
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name="users_known_sources",

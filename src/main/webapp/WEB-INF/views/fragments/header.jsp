@@ -10,17 +10,18 @@
 <html>
 <head>
     <title>Header</title>
+    <link rel="stylesheet" href="/style.css"/>
 </head>
 <body>
 <header>
     <nav>
         <div id="menu">
-            <span> <a href="/user/skills"> Strona główna </a> </span>
-            <span><a href="/register">Rejestracja</a></span>
-            <span><a href="/login">Logowanie</a></span>
-            <span><a href="/logout">Wylogowanie</a></span>
-            <span><a href="/user/sources">Źródła wiedzy</a></span>
-            <span><a href="/user/unknown-sources">Nieznane źródła wiedzy</a></span>
+            <span class="menuOption"> <a href="/user/skills"> Strona główna </a> </span>
+            <span class="menuOption"><a href="/register">Rejestracja</a></span>
+            <span class="menuOption"><a href="/login">Logowanie</a></span>
+            <span class="menuOption"><a href="/logout">Wylogowanie</a></span>
+            <span class="menuOption"><a href="/user/sources">Źródła wiedzy</a></span>
+            <span class="menuOption"><a href="/user/unknown-sources">Nieznane źródła wiedzy</a></span>
 
         </div>
     </nav>
