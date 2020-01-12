@@ -13,7 +13,8 @@
     <title>Skills</title>
 </head>
 <body>
-<% int counter = 0;%>
+<jsp:include page="fragments/header.jsp"/>
+<% int counter = 1;%>
 <table>
     <thead>
     <tr>
@@ -32,5 +33,6 @@
         </c:forEach>
     </tbody>
 </table>
+<jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

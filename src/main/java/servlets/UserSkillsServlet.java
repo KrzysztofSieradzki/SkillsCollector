@@ -25,6 +25,7 @@ public class UserSkillsServlet extends HttpServlet {
         User user = (User) req.getSession().getAttribute("user");
         List<Skill> skills= userDao.getAllSkills(user);
         Map<Skill,Integer> mapOfSkills = new HashMap<>();
+
         for(Skill s : skills){
             mapOfSkills.put(s,1);
         }
