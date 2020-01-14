@@ -63,11 +63,10 @@ public class UserDao extends BaseDao {
                 .getResultList());
     }
 
-    public User getWithSources(Long id){
-        return super.produceInTransaction(session -> {
-            User user = session.get(User.class,id);
-            Hibernate.initialize(user.getSources());
-            return user;
-        });
+    public List<Source> getWithSources(String username){
+        return super.produceInTransaction(session -> session.createQuery("SELECT sc from User u " +
+                "JOIN u.sources sc WHERE u.username = :username",Source.class)
+                .setParameter("username",username)
+                .getResultList());
     }
 }

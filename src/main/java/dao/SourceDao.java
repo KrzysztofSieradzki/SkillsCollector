@@ -1,7 +1,10 @@
 package dao;
 
 import model.Source;
+import model.User;
 import org.hibernate.SessionFactory;
+
+import java.util.List;
 
 public class SourceDao extends BaseDao {
     public SourceDao(SessionFactory sessionFactory) {
@@ -19,6 +22,11 @@ public class SourceDao extends BaseDao {
     }
     public void update(Source source){
         super.executeInTransaction(session -> session.update(source));
+    }
+
+    public List<Source> getAll(){
+        return super.produceInTransaction(session -> session.createQuery("select sc from Source sc",Source.class)
+                .getResultList());
     }
 
 }
