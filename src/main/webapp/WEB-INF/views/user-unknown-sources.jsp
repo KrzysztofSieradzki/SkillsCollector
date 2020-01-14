@@ -22,7 +22,7 @@
         <th>Id</th>
         <th>Name of Source</th>
         <th>Description</th>
-        <%--                <th>Skills</th>--%>
+        <th>Skills</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -31,9 +31,9 @@
     <c:forEach items="${sources}" var="source">
         <tr>
             <td><%=counter++%></td>
-            <td>${source.name}</td>
-            <td>${source.description}</td>
-                <%--                <td>${source.skills}</td>--%>
+            <td>${source.key.name}</td>
+            <td>${source.key.description}</td>
+            <td>${source.value}</td>
             <td>Action link</td>
         </tr>
     </c:forEach>
