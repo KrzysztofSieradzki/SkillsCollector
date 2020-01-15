@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class UserDao extends BaseDao {
     public UserDao(SessionFactory sessionFactory) {
@@ -69,4 +70,15 @@ public class UserDao extends BaseDao {
                 .setParameter("username",username)
                 .getResultList());
     }
+
+    public void confirmSource(String username, Long id){
+        super.executeInTransaction(session -> {
+            User user = session.createQuery("SELECT u from User u WHERE u.username=:username",User.class)
+                    .setParameter("username",username).getSingleResult();
+            Source source = session.get(Source.class,id);
+            user.getSources().add(source);
+        });
+    }
+
+
 }

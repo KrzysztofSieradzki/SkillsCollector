@@ -28,10 +28,5 @@ public class SkillDao extends BaseDao {
         return super.produceInTransaction(session -> session.createQuery("select sk from Skill sk",Skill.class)
                 .getResultList());
     }
-    public List<String> getAllBySource(Long id){
-        return super.produceInTransaction(session -> session.createQuery("SELECT sk.name FROM Source sc " +
-                "JOIN sc.skills sk WHERE sc.id = :id",String.class))
-                .setParameter("id",id)
-                .getResultList();
-    }
+
 }

@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <% int counter = 1;%>
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>Id</th>
@@ -29,9 +29,9 @@
             <c:forEach items="${sources}" var="source">
             <tr>
                 <td><%=counter++%></td>
-                <td>${source.name}</td>
-                <td>${source.description}</td>
-<%--                <td>${source.skills}</td>--%>
+                <td>${source.key.name}</td>
+                <td>${source.key.description}</td>
+                <td>${source.value}</td>
             </tr>
             </c:forEach>
 

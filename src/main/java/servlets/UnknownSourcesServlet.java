@@ -15,9 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @WebServlet(urlPatterns = "/user/unknown-sources")
 public class UnknownSourcesServlet extends HttpServlet {
@@ -33,14 +31,21 @@ public class UnknownSourcesServlet extends HttpServlet {
         unknownSources.removeAll(knownSources);
 
 
-        Map<Source ,String> sourcesWithSkills = new HashMap<>();
+        Map<Source , String> sourcesWithSkills = new HashMap<>();
         for(Source s : unknownSources){
-          // String output= skillDao.getAllBySource(s.getId()).toArray().toString();
-          sourcesWithSkills.put(s,"dupa");
+              sourcesWithSkills.put(s,sourceDao.showMeMySkills(s.getName()));
         }
 
         req.setAttribute("sources",sourcesWithSkills);
         req.getRequestDispatcher("/WEB-INF/views/user-unknown-sources.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        User user = (User)req.getSession().getAttribute("user");
+        Long sourceId = Long.parseLong(req.getParameter("sourceId"));
+        userDao.confirmSource(user.getUsername(),sourceId);
+        resp.sendRedirect("/user/unknown-sources");
     }
 
     @Override

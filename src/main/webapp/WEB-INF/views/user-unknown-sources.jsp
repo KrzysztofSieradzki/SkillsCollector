@@ -16,7 +16,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <% int counter = 1;%>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>Id</th>
@@ -31,10 +31,14 @@
     <c:forEach items="${sources}" var="source">
         <tr>
             <td><%=counter++%></td>
+
             <td>${source.key.name}</td>
             <td>${source.key.description}</td>
             <td>${source.value}</td>
-            <td>Action link</td>
+            <td><form method="post" action="/user/unknown-sources">
+                <button type="submit">Add</button>
+                <input type="hidden" value="${source.key.id}" name="sourceId">
+            </form></td>
         </tr>
     </c:forEach>
 
