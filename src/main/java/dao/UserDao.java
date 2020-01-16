@@ -6,9 +6,7 @@ import model.User;
 import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class UserDao extends BaseDao {
     public UserDao(SessionFactory sessionFactory) {
@@ -79,6 +77,7 @@ public class UserDao extends BaseDao {
             user.getSources().add(source);
         });
     }
+
 
 
 }

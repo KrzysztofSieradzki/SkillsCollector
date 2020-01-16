@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <% int counter = 1;%>
-<table>
+<table border="1">
     <thead>
     <tr>
         <th>Id</th>
@@ -30,6 +30,26 @@
                 <td>${skill.key.name}</td>
                 <td>${skill.value}</td>
             </tr>
+        </c:forEach>
+    </tbody>
+</table>
+
+<h2>Top 5 skills </h2>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Skill name</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+        <c:forEach items="${topFive}" var="top" varStatus="stat">
+        <tr>
+            <td>${stat.count}</td>
+            <td>${top.key.name}</td>
+            <td>${top.value}</td>
+        </tr>
         </c:forEach>
     </tbody>
 </table>
